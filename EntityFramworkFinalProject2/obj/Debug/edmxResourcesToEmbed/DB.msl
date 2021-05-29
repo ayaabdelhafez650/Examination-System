@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="mangement_storesEntities">
+    <EntitySetMapping Name="C_itemsDetails">
+      <EntityTypeMapping TypeName="Model.C_itemsDetails">
+        <MappingFragment StoreEntitySet=" itemsDetails">
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="itemUnit_id" ColumnName="itemUnit_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="Model.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="client_phone" ColumnName="client_phone" />
+          <ScalarProperty Name="client_fax" ColumnName="client_fax" />
+          <ScalarProperty Name="client_mail" ColumnName="client_mail" />
+          <ScalarProperty Name="client_website" ColumnName="client_website" />
+          <ScalarProperty Name="client_mobile" ColumnName="client_mobile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="Model.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DismissalNotices">
+      <EntityTypeMapping TypeName="Model.DismissalNotice">
+        <MappingFragment StoreEntitySet="DismissalNotice">
+          <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="dismissal_id" ColumnName="dismissal_id" />
+          <ScalarProperty Name="dismissal_date" ColumnName="dismissal_date" />
+          <ScalarProperty Name="dismissalDept_id" ColumnName="dismissalDept_id" />
+          <ScalarProperty Name="dismissalStore_id" ColumnName="dismissalStore_id" />
+          <ScalarProperty Name="dismissalUser_id" ColumnName="dismissalUser_id" />
+          <ScalarProperty Name="dismissalClient_id" ColumnName="dismissalClient_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permitionItems">
+      <EntityTypeMapping TypeName="Model.permitionItem">
+        <MappingFragment StoreEntitySet="permitionItem">
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="permItem_id" ColumnName="permItem_id" />
+          <ScalarProperty Name="permition_id" ColumnName="permition_id" />
+          <ScalarProperty Name="item_date" ColumnName="item_date" />
+          <ScalarProperty Name="item_price" ColumnName="item_price" />
+          <ScalarProperty Name="item_periodValidity" ColumnName="item_periodValidity" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
+          <ScalarProperty Name="ProductionEnd" ColumnName="ProductionEnd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stores">
+      <EntityTypeMapping TypeName="Model.Store">
+        <MappingFragment StoreEntitySet="Stores">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="store_name" ColumnName="store_name" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="Model.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="supplier_phone" ColumnName="supplier_phone" />
+          <ScalarProperty Name="supplier_fax" ColumnName="supplier_fax" />
+          <ScalarProperty Name="supplier_mail" ColumnName="supplier_mail" />
+          <ScalarProperty Name="supplier_website" ColumnName="supplier_website" />
+          <ScalarProperty Name="supplier_mobile" ColumnName="supplier_mobile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplyPermissions">
+      <EntityTypeMapping TypeName="Model.SupplyPermission">
+        <MappingFragment StoreEntitySet="SupplyPermission">
+          <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+          <ScalarProperty Name="permission_date" ColumnName="permission_date" />
+          <ScalarProperty Name="permSupplier_id" ColumnName="permSupplier_id" />
+          <ScalarProperty Name="permDept_id" ColumnName="permDept_id" />
+          <ScalarProperty Name="permStore_id" ColumnName="permStore_id" />
+          <ScalarProperty Name="permUser_id" ColumnName="permUser_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionItems">
+      <EntityTypeMapping TypeName="Model.transactionItem">
+        <MappingFragment StoreEntitySet="transactionItem">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="EmployeeRecive" ColumnName="EmployeeRecive" />
+          <ScalarProperty Name="EmployeeSend" ColumnName="EmployeeSend" />
+          <ScalarProperty Name="StoreRecive" ColumnName="StoreRecive" />
+          <ScalarProperty Name="StoreSend" ColumnName="StoreSend" />
+          <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="Model.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Model.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

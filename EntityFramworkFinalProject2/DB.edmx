@@ -1,0 +1,1234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name=" itemsDetails">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="itemUnit_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="client_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_fax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_website" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_mobile" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="int" Nullable="false" />
+          <Property Name="dept_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DismissalNotice">
+          <Key>
+            <PropertyRef Name="dismissal_id" />
+          </Key>
+          <Property Name="dismissal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dismissal_date" Type="date" Nullable="false" />
+          <Property Name="dismissalDept_id" Type="int" Nullable="false" />
+          <Property Name="dismissalStore_id" Type="int" Nullable="false" />
+          <Property Name="dismissalUser_id" Type="int" Nullable="false" />
+          <Property Name="dismissalClient_id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="totalPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="permitionItem">
+          <Key>
+            <PropertyRef Name="permItem_id" />
+          </Key>
+          <Property Name="permItem_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permition_id" Type="int" Nullable="false" />
+          <Property Name="item_date" Type="datetime" Nullable="false" />
+          <Property Name="item_price" Type="int" Nullable="false" />
+          <Property Name="item_periodValidity" Type="int" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Store_Id" Type="int" Nullable="false" />
+          <Property Name="ProductionEnd" Type="datetime" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Stores">
+          <Key>
+            <PropertyRef Name="store_id" />
+          </Key>
+          <Property Name="store_id" Type="int" Nullable="false" />
+          <Property Name="store_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="person_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="int" Nullable="false" />
+          <Property Name="supplier_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplier_phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplier_fax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplier_mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplier_website" Type="varchar" MaxLength="50" />
+          <Property Name="supplier_mobile" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplyPermission">
+          <Key>
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="permission_id" Type="int" Nullable="false" />
+          <Property Name="permission_date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="permSupplier_id" Type="int" Nullable="false" />
+          <Property Name="permDept_id" Type="int" Nullable="false" />
+          <Property Name="permStore_id" Type="int" Nullable="false" />
+          <Property Name="permUser_id" Type="int" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="totalprice" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="transactionItem">
+          <Key>
+            <PropertyRef Name="trans_id" />
+          </Key>
+          <Property Name="trans_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreSend" Type="int" Nullable="false" />
+          <Property Name="StoreRecive" Type="int" Nullable="false" />
+          <Property Name="EmployeeSend" Type="int" Nullable="false" />
+          <Property Name="EmployeeRecive" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="unit_id" />
+          </Key>
+          <Property Name="unit_id" Type="int" Nullable="false" />
+          <Property Name="unit_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dept_id" Type="int" Nullable="false" />
+          <Property Name="store_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ itemsDetails_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role=" itemsDetails" Type="Self. itemsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="unit_id" />
+            </Principal>
+            <Dependent Role=" itemsDetails">
+              <PropertyRef Name="itemUnit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_ itemsDetails">
+          <End Role=" itemsDetails" Type="Self. itemsDetails" Multiplicity="0..1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role=" itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalClient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalDept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalUser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permitionItem_ itemsDetails">
+          <End Role=" itemsDetails" Type="Self. itemsDetails" Multiplicity="1" />
+          <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role=" itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="permitionItem">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permitionItem_Stores">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="permitionItem">
+              <PropertyRef Name="Store_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permitionItem_SupplyPermission1">
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="1" />
+          <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplyPermission">
+              <PropertyRef Name="permission_id" />
+            </Principal>
+            <Dependent Role="permitionItem">
+              <PropertyRef Name="permition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stores_Department2">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Stores" Type="Self.Stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stores_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Stores" Type="Self.Stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_ itemsDetails">
+          <End Role=" itemsDetails" Type="Self. itemsDetails" Multiplicity="0..1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role=" itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permDept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Stores">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permStore_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permSupplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permUser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_ itemsDetails">
+          <End Role=" itemsDetails" Type="Self. itemsDetails" Multiplicity="1" />
+          <End Role="transactionItem" Type="Self.transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role=" itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Stores">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="transactionItem" Type="Self.transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="StoreSend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Stores1">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="transactionItem" Type="Self.transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="StoreRecive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="transactionItem" Type="Self.transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="EmployeeSend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="transactionItem" Type="Self.transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="EmployeeRecive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Department2">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="dept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Stores2">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name=" itemsDetails" EntityType="Self. itemsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DismissalNotice" EntityType="Self.DismissalNotice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permitionItem" EntityType="Self.permitionItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stores" EntityType="Self.Stores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplyPermission" EntityType="Self.SupplyPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactionItem" EntityType="Self.transactionItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ itemsDetails_Unit" Association="Self.FK_ itemsDetails_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role=" itemsDetails" EntitySet=" itemsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_ itemsDetails" Association="Self.FK_DismissalNotice_ itemsDetails">
+            <End Role=" itemsDetails" EntitySet=" itemsDetails" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Client" Association="Self.FK_DismissalNotice_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Department" Association="Self.FK_DismissalNotice_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Users" Association="Self.FK_DismissalNotice_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permitionItem_ itemsDetails" Association="Self.FK_permitionItem_ itemsDetails">
+            <End Role=" itemsDetails" EntitySet=" itemsDetails" />
+            <End Role="permitionItem" EntitySet="permitionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permitionItem_Stores" Association="Self.FK_permitionItem_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="permitionItem" EntitySet="permitionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permitionItem_SupplyPermission1" Association="Self.FK_permitionItem_SupplyPermission1">
+            <End Role="SupplyPermission" EntitySet="SupplyPermission" />
+            <End Role="permitionItem" EntitySet="permitionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stores_Department2" Association="Self.FK_Stores_Department2">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stores_Users1" Association="Self.FK_Stores_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_ itemsDetails" Association="Self.FK_SupplyPermission_ itemsDetails">
+            <End Role=" itemsDetails" EntitySet=" itemsDetails" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Department" Association="Self.FK_SupplyPermission_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Stores" Association="Self.FK_SupplyPermission_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Supplier" Association="Self.FK_SupplyPermission_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Users" Association="Self.FK_SupplyPermission_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_ itemsDetails" Association="Self.FK_transactionItem_ itemsDetails">
+            <End Role=" itemsDetails" EntitySet=" itemsDetails" />
+            <End Role="transactionItem" EntitySet="transactionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Stores" Association="Self.FK_transactionItem_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="transactionItem" EntitySet="transactionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Stores1" Association="Self.FK_transactionItem_Stores1">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="transactionItem" EntitySet="transactionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Users" Association="Self.FK_transactionItem_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="transactionItem" EntitySet="transactionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Users1" Association="Self.FK_transactionItem_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="transactionItem" EntitySet="transactionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Department2" Association="Self.FK_Users_Department2">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Stores2" Association="Self.FK_Users_Stores2">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_itemsDetails">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemUnit_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK__itemsDetails_Unit" FromRole="C_itemsDetails" ToRole="Unit" />
+          <NavigationProperty Name="permitionItems" Relationship="Self.FK_permitionItem__itemsDetails" FromRole="C_itemsDetails" ToRole="permitionItem" />
+          <NavigationProperty Name="SupplyPermissions" Relationship="Model.FK_SupplyPermission__itemsDetails" FromRole="C_itemsDetails" ToRole="SupplyPermission" />
+          <NavigationProperty Name="DismissalNotices" Relationship="Model.FK_DismissalNotice__itemsDetails" FromRole="C_itemsDetails" ToRole="DismissalNotice" />
+          <NavigationProperty Name="transactionItems" Relationship="Model.FK_transactionItem__itemsDetails" FromRole="C_itemsDetails" ToRole="transactionItem" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Client" FromRole="Client" ToRole="DismissalNotice" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="Int32" Nullable="false" />
+          <Property Name="dept_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Department" FromRole="Department" ToRole="DismissalNotice" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK_Stores_Department2" FromRole="Department" ToRole="Stores" />
+          <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Department" FromRole="Department" ToRole="SupplyPermission" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Department2" FromRole="Department" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="DismissalNotice">
+          <Key>
+            <PropertyRef Name="dismissal_id" />
+          </Key>
+          <Property Name="dismissal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dismissal_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dismissalDept_id" Type="Int32" Nullable="false" />
+          <Property Name="dismissalStore_id" Type="Int32" Nullable="false" />
+          <Property Name="dismissalUser_id" Type="Int32" Nullable="false" />
+          <Property Name="dismissalClient_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_DismissalNotice_Client" FromRole="DismissalNotice" ToRole="Client" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_DismissalNotice_Department" FromRole="DismissalNotice" ToRole="Department" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_DismissalNotice_Stores" FromRole="DismissalNotice" ToRole="Stores" />
+          <NavigationProperty Name="User" Relationship="Self.FK_DismissalNotice_Users" FromRole="DismissalNotice" ToRole="Users" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="totalPrice" Type="Int32" />
+          <NavigationProperty Name="C_itemsDetails" Relationship="Model.FK_DismissalNotice__itemsDetails" FromRole="DismissalNotice" ToRole="C_itemsDetails" />
+        </EntityType>
+        <EntityType Name="permitionItem">
+          <Key>
+            <PropertyRef Name="permItem_id" />
+          </Key>
+          <Property Name="permItem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permition_id" Type="Int32" Nullable="false" />
+          <Property Name="item_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="item_price" Type="Int32" Nullable="false" />
+          <Property Name="item_periodValidity" Type="Int32" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Store_Id" Type="Int32" Nullable="false" />
+          <Property Name="ProductionEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="C_itemsDetails" Relationship="Self.FK_permitionItem__itemsDetails" FromRole="permitionItem" ToRole="C_itemsDetails" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_permitionItem_Stores" FromRole="permitionItem" ToRole="Stores" />
+          <NavigationProperty Name="SupplyPermission" Relationship="Self.FK_permitionItem_SupplyPermission1" FromRole="permitionItem" ToRole="SupplyPermission" />
+          <Property Name="quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="store_id" />
+          </Key>
+          <Property Name="store_id" Type="Int32" Nullable="false" />
+          <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="person_id" Type="Int32" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Stores_Department2" FromRole="Stores" ToRole="Department" />
+          <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Stores" FromRole="Stores" ToRole="DismissalNotice" />
+          <NavigationProperty Name="permitionItems" Relationship="Self.FK_permitionItem_Stores" FromRole="Stores" ToRole="permitionItem" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Stores_Users1" FromRole="Stores" ToRole="Users" />
+          <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Stores" FromRole="Stores" ToRole="SupplyPermission" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Stores2" FromRole="Stores" ToRole="Users" />
+          <NavigationProperty Name="transactionItems" Relationship="Model.FK_transactionItem_Stores" FromRole="Store" ToRole="transactionItem" />
+          <NavigationProperty Name="transactionItems1" Relationship="Model.FK_transactionItem_Stores1" FromRole="Store" ToRole="transactionItem" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Int32" Nullable="false" />
+          <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="supplier_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="supplier_fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="supplier_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="supplier_website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplier_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Supplier" FromRole="Supplier" ToRole="SupplyPermission" />
+        </EntityType>
+        <EntityType Name="SupplyPermission">
+          <Key>
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="permission_id" Type="Int32" Nullable="false" />
+          <Property Name="permission_date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="permSupplier_id" Type="Int32" Nullable="false" />
+          <Property Name="permDept_id" Type="Int32" Nullable="false" />
+          <Property Name="permStore_id" Type="Int32" Nullable="false" />
+          <Property Name="permUser_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_SupplyPermission_Department" FromRole="SupplyPermission" ToRole="Department" />
+          <NavigationProperty Name="permitionItems" Relationship="Self.FK_permitionItem_SupplyPermission1" FromRole="SupplyPermission" ToRole="permitionItem" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_SupplyPermission_Stores" FromRole="SupplyPermission" ToRole="Stores" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_SupplyPermission_Supplier" FromRole="SupplyPermission" ToRole="Supplier" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SupplyPermission_Users" FromRole="SupplyPermission" ToRole="Users" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="totalprice" Type="Int32" />
+          <NavigationProperty Name="C_itemsDetails" Relationship="Model.FK_SupplyPermission__itemsDetails" FromRole="SupplyPermission" ToRole="C_itemsDetails" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="transactionItem">
+          <Key>
+            <PropertyRef Name="trans_id" />
+          </Key>
+          <Property Name="trans_id" Type="Int32" Nullable="false" />
+          <Property Name="StoreSend" Type="Int32" Nullable="false" />
+          <Property Name="StoreRecive" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeSend" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeRecive" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="C_itemsDetails" Relationship="Model.FK_transactionItem__itemsDetails" FromRole="transactionItem" ToRole="C_itemsDetails" />
+          <NavigationProperty Name="Store" Relationship="Model.FK_transactionItem_Stores" FromRole="transactionItem" ToRole="Store" />
+          <NavigationProperty Name="Store1" Relationship="Model.FK_transactionItem_Stores1" FromRole="transactionItem" ToRole="Store" />
+          <NavigationProperty Name="User" Relationship="Model.FK_transactionItem_Users" FromRole="transactionItem" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Model.FK_transactionItem_Users1" FromRole="transactionItem" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="unit_id" />
+          </Key>
+          <Property Name="unit_id" Type="Int32" Nullable="false" />
+          <Property Name="unit_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="C_itemsDetails" Relationship="Self.FK__itemsDetails_Unit" FromRole="Unit" ToRole="C_itemsDetails" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dept_id" Type="Int32" Nullable="false" />
+          <Property Name="store_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Users_Department2" FromRole="Users" ToRole="Department" />
+          <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Users" FromRole="Users" ToRole="DismissalNotice" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK_Stores_Users1" FromRole="Users" ToRole="Stores" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Users_Stores2" FromRole="Users" ToRole="Stores" />
+          <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Users" FromRole="Users" ToRole="SupplyPermission" />
+          <NavigationProperty Name="transactionItems" Relationship="Model.FK_transactionItem_Users" FromRole="User" ToRole="transactionItem" />
+          <NavigationProperty Name="transactionItems1" Relationship="Model.FK_transactionItem_Users1" FromRole="User" ToRole="transactionItem" />
+        </EntityType>
+        <Association Name="FK__itemsDetails_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="C_itemsDetails" Type="Self.C_itemsDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="unit_id" />
+            </Principal>
+            <Dependent Role="C_itemsDetails">
+              <PropertyRef Name="itemUnit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permitionItem__itemsDetails">
+          <End Role="C_itemsDetails" Type="Self.C_itemsDetails" Multiplicity="1" />
+          <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="permitionItem">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalClient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalDept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stores_Department2">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Stores" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permDept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Department2">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="dept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Stores">
+          <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalStore_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="dismissalUser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permitionItem_Stores">
+          <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+          <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="permitionItem">
+              <PropertyRef Name="Store_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permitionItem_SupplyPermission1">
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="1" />
+          <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplyPermission">
+              <PropertyRef Name="permission_id" />
+            </Principal>
+            <Dependent Role="permitionItem">
+              <PropertyRef Name="permition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stores_Users1">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Stores" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Stores">
+          <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permStore_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Stores2">
+          <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permSupplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyPermission_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="permUser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mangement_storesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_itemsDetails" EntityType="Self.C_itemsDetails" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="DismissalNotices" EntityType="Self.DismissalNotice" />
+          <EntitySet Name="permitionItems" EntityType="Self.permitionItem" />
+          <EntitySet Name="Stores" EntityType="Self.Store" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="SupplyPermissions" EntityType="Self.SupplyPermission" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="transactionItems" EntityType="Self.transactionItem" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__itemsDetails_Unit" Association="Self.FK__itemsDetails_Unit">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permitionItem__itemsDetails" Association="Self.FK_permitionItem__itemsDetails">
+            <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+            <End Role="permitionItem" EntitySet="permitionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Client" Association="Self.FK_DismissalNotice_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Department" Association="Self.FK_DismissalNotice_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stores_Department2" Association="Self.FK_Stores_Department2">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Department" Association="Self.FK_SupplyPermission_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Department2" Association="Self.FK_Users_Department2">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Stores" Association="Self.FK_DismissalNotice_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice_Users" Association="Self.FK_DismissalNotice_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permitionItem_Stores" Association="Self.FK_permitionItem_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="permitionItem" EntitySet="permitionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permitionItem_SupplyPermission1" Association="Self.FK_permitionItem_SupplyPermission1">
+            <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+            <End Role="permitionItem" EntitySet="permitionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stores_Users1" Association="Self.FK_Stores_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Stores" Association="Self.FK_SupplyPermission_Stores">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Stores2" Association="Self.FK_Users_Stores2">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Supplier" Association="Self.FK_SupplyPermission_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission_Users" Association="Self.FK_SupplyPermission_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyPermission__itemsDetails" Association="Model.FK_SupplyPermission__itemsDetails">
+            <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+            <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DismissalNotice__itemsDetails" Association="Model.FK_DismissalNotice__itemsDetails">
+            <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+            <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem__itemsDetails" Association="Model.FK_transactionItem__itemsDetails">
+            <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+            <End Role="transactionItem" EntitySet="transactionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Stores" Association="Model.FK_transactionItem_Stores">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="transactionItem" EntitySet="transactionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Stores1" Association="Model.FK_transactionItem_Stores1">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="transactionItem" EntitySet="transactionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Users" Association="Model.FK_transactionItem_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="transactionItem" EntitySet="transactionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactionItem_Users1" Association="Model.FK_transactionItem_Users1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="transactionItem" EntitySet="transactionItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_SupplyPermission__itemsDetails">
+          <End Type="Model.C_itemsDetails" Role="C_itemsDetails" Multiplicity="0..1" />
+          <End Type="Model.SupplyPermission" Role="SupplyPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="SupplyPermission">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DismissalNotice__itemsDetails">
+          <End Type="Model.C_itemsDetails" Role="C_itemsDetails" Multiplicity="0..1" />
+          <End Type="Model.DismissalNotice" Role="DismissalNotice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="DismissalNotice">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem__itemsDetails">
+          <End Type="Model.C_itemsDetails" Role="C_itemsDetails" Multiplicity="1" />
+          <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_itemsDetails">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Stores">
+          <End Type="Model.Store" Role="Store" Multiplicity="1" />
+          <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="StoreSend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Stores1">
+          <End Type="Model.Store" Role="Store" Multiplicity="1" />
+          <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="StoreRecive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Users">
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="EmployeeSend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactionItem_Users1">
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="transactionItem">
+              <PropertyRef Name="EmployeeRecive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="mangement_storesEntities">
+          <EntitySetMapping Name="C_itemsDetails">
+            <EntityTypeMapping TypeName="Model.C_itemsDetails">
+              <MappingFragment StoreEntitySet=" itemsDetails">
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="itemUnit_id" ColumnName="itemUnit_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="client_name" ColumnName="client_name" />
+                <ScalarProperty Name="client_phone" ColumnName="client_phone" />
+                <ScalarProperty Name="client_fax" ColumnName="client_fax" />
+                <ScalarProperty Name="client_mail" ColumnName="client_mail" />
+                <ScalarProperty Name="client_website" ColumnName="client_website" />
+                <ScalarProperty Name="client_mobile" ColumnName="client_mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="Model.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DismissalNotices">
+            <EntityTypeMapping TypeName="Model.DismissalNotice">
+              <MappingFragment StoreEntitySet="DismissalNotice">
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="dismissal_id" ColumnName="dismissal_id" />
+                <ScalarProperty Name="dismissal_date" ColumnName="dismissal_date" />
+                <ScalarProperty Name="dismissalDept_id" ColumnName="dismissalDept_id" />
+                <ScalarProperty Name="dismissalStore_id" ColumnName="dismissalStore_id" />
+                <ScalarProperty Name="dismissalUser_id" ColumnName="dismissalUser_id" />
+                <ScalarProperty Name="dismissalClient_id" ColumnName="dismissalClient_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permitionItems">
+            <EntityTypeMapping TypeName="Model.permitionItem">
+              <MappingFragment StoreEntitySet="permitionItem">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="permItem_id" ColumnName="permItem_id" />
+                <ScalarProperty Name="permition_id" ColumnName="permition_id" />
+                <ScalarProperty Name="item_date" ColumnName="item_date" />
+                <ScalarProperty Name="item_price" ColumnName="item_price" />
+                <ScalarProperty Name="item_periodValidity" ColumnName="item_periodValidity" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
+                <ScalarProperty Name="ProductionEnd" ColumnName="ProductionEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="Model.Store">
+              <MappingFragment StoreEntitySet="Stores">
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="store_name" ColumnName="store_name" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="Model.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+                <ScalarProperty Name="supplier_phone" ColumnName="supplier_phone" />
+                <ScalarProperty Name="supplier_fax" ColumnName="supplier_fax" />
+                <ScalarProperty Name="supplier_mail" ColumnName="supplier_mail" />
+                <ScalarProperty Name="supplier_website" ColumnName="supplier_website" />
+                <ScalarProperty Name="supplier_mobile" ColumnName="supplier_mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplyPermissions">
+            <EntityTypeMapping TypeName="Model.SupplyPermission">
+              <MappingFragment StoreEntitySet="SupplyPermission">
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="permission_date" ColumnName="permission_date" />
+                <ScalarProperty Name="permSupplier_id" ColumnName="permSupplier_id" />
+                <ScalarProperty Name="permDept_id" ColumnName="permDept_id" />
+                <ScalarProperty Name="permStore_id" ColumnName="permStore_id" />
+                <ScalarProperty Name="permUser_id" ColumnName="permUser_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactionItems">
+            <EntityTypeMapping TypeName="Model.transactionItem">
+              <MappingFragment StoreEntitySet="transactionItem">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmployeeRecive" ColumnName="EmployeeRecive" />
+                <ScalarProperty Name="EmployeeSend" ColumnName="EmployeeSend" />
+                <ScalarProperty Name="StoreRecive" ColumnName="StoreRecive" />
+                <ScalarProperty Name="StoreSend" ColumnName="StoreSend" />
+                <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="Model.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

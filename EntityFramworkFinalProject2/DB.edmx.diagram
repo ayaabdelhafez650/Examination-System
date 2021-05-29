@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="141b2b457fba4ab390d5ef6573f6a9d5" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C_itemsDetails" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DismissalNotice" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.permitionItem" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Store" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Supplier" Width="1.5" PointX="9" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SupplyPermission" Width="1.5" PointX="11.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.transactionItem" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Unit" Width="1.5" PointX="3.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__itemsDetails_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_permitionItem__itemsDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DismissalNotice_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DismissalNotice_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stores_Department2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SupplyPermission_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Users_Department2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DismissalNotice_Stores" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DismissalNotice_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_permitionItem_Stores" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_permitionItem_SupplyPermission1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stores_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SupplyPermission_Stores" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Users_Stores2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SupplyPermission_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SupplyPermission_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SupplyPermission__itemsDetails" />
+        <AssociationConnector Association="Model.FK_DismissalNotice__itemsDetails" />
+        <AssociationConnector Association="Model.FK_transactionItem__itemsDetails" />
+        <AssociationConnector Association="Model.FK_transactionItem_Stores" />
+        <AssociationConnector Association="Model.FK_transactionItem_Stores1" />
+        <AssociationConnector Association="Model.FK_transactionItem_Users" />
+        <AssociationConnector Association="Model.FK_transactionItem_Users1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

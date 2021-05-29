@@ -1,0 +1,560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C_itemsDetails">
+    <Key>
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="item_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="itemUnit_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK__itemsDetails_Unit" FromRole="C_itemsDetails" ToRole="Unit" />
+    <NavigationProperty Name="permitionItems" Relationship="Self.FK_permitionItem__itemsDetails" FromRole="C_itemsDetails" ToRole="permitionItem" />
+    <NavigationProperty Name="SupplyPermissions" Relationship="Model.FK_SupplyPermission__itemsDetails" FromRole="C_itemsDetails" ToRole="SupplyPermission" />
+    <NavigationProperty Name="DismissalNotices" Relationship="Model.FK_DismissalNotice__itemsDetails" FromRole="C_itemsDetails" ToRole="DismissalNotice" />
+    <NavigationProperty Name="transactionItems" Relationship="Model.FK_transactionItem__itemsDetails" FromRole="C_itemsDetails" ToRole="transactionItem" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="client_id" />
+    </Key>
+    <Property Name="client_id" Type="Int32" Nullable="false" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="client_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="client_fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="client_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="client_website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="client_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Client" FromRole="Client" ToRole="DismissalNotice" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="dep_id" />
+    </Key>
+    <Property Name="dep_id" Type="Int32" Nullable="false" />
+    <Property Name="dept_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Department" FromRole="Department" ToRole="DismissalNotice" />
+    <NavigationProperty Name="Stores" Relationship="Self.FK_Stores_Department2" FromRole="Department" ToRole="Stores" />
+    <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Department" FromRole="Department" ToRole="SupplyPermission" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Department2" FromRole="Department" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="DismissalNotice">
+    <Key>
+      <PropertyRef Name="dismissal_id" />
+    </Key>
+    <Property Name="dismissal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dismissal_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dismissalDept_id" Type="Int32" Nullable="false" />
+    <Property Name="dismissalStore_id" Type="Int32" Nullable="false" />
+    <Property Name="dismissalUser_id" Type="Int32" Nullable="false" />
+    <Property Name="dismissalClient_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_DismissalNotice_Client" FromRole="DismissalNotice" ToRole="Client" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_DismissalNotice_Department" FromRole="DismissalNotice" ToRole="Department" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_DismissalNotice_Stores" FromRole="DismissalNotice" ToRole="Stores" />
+    <NavigationProperty Name="User" Relationship="Self.FK_DismissalNotice_Users" FromRole="DismissalNotice" ToRole="Users" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="totalPrice" Type="Int32" />
+    <NavigationProperty Name="C_itemsDetails" Relationship="Model.FK_DismissalNotice__itemsDetails" FromRole="DismissalNotice" ToRole="C_itemsDetails" />
+  </EntityType>
+  <EntityType Name="permitionItem">
+    <Key>
+      <PropertyRef Name="permItem_id" />
+    </Key>
+    <Property Name="permItem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permition_id" Type="Int32" Nullable="false" />
+    <Property Name="item_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="item_price" Type="Int32" Nullable="false" />
+    <Property Name="item_periodValidity" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Store_Id" Type="Int32" Nullable="false" />
+    <Property Name="ProductionEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="C_itemsDetails" Relationship="Self.FK_permitionItem__itemsDetails" FromRole="permitionItem" ToRole="C_itemsDetails" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_permitionItem_Stores" FromRole="permitionItem" ToRole="Stores" />
+    <NavigationProperty Name="SupplyPermission" Relationship="Self.FK_permitionItem_SupplyPermission1" FromRole="permitionItem" ToRole="SupplyPermission" />
+    <Property Name="quantity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="person_id" Type="Int32" Nullable="false" />
+    <Property Name="department_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Stores_Department2" FromRole="Stores" ToRole="Department" />
+    <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Stores" FromRole="Stores" ToRole="DismissalNotice" />
+    <NavigationProperty Name="permitionItems" Relationship="Self.FK_permitionItem_Stores" FromRole="Stores" ToRole="permitionItem" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Stores_Users1" FromRole="Stores" ToRole="Users" />
+    <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Stores" FromRole="Stores" ToRole="SupplyPermission" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Stores2" FromRole="Stores" ToRole="Users" />
+    <NavigationProperty Name="transactionItems" Relationship="Model.FK_transactionItem_Stores" FromRole="Store" ToRole="transactionItem" />
+    <NavigationProperty Name="transactionItems1" Relationship="Model.FK_transactionItem_Stores1" FromRole="Store" ToRole="transactionItem" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="supplier_id" />
+    </Key>
+    <Property Name="supplier_id" Type="Int32" Nullable="false" />
+    <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="supplier_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="supplier_fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="supplier_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="supplier_website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="supplier_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Supplier" FromRole="Supplier" ToRole="SupplyPermission" />
+  </EntityType>
+  <EntityType Name="SupplyPermission">
+    <Key>
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="permission_id" Type="Int32" Nullable="false" />
+    <Property Name="permission_date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="permSupplier_id" Type="Int32" Nullable="false" />
+    <Property Name="permDept_id" Type="Int32" Nullable="false" />
+    <Property Name="permStore_id" Type="Int32" Nullable="false" />
+    <Property Name="permUser_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_SupplyPermission_Department" FromRole="SupplyPermission" ToRole="Department" />
+    <NavigationProperty Name="permitionItems" Relationship="Self.FK_permitionItem_SupplyPermission1" FromRole="SupplyPermission" ToRole="permitionItem" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_SupplyPermission_Stores" FromRole="SupplyPermission" ToRole="Stores" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_SupplyPermission_Supplier" FromRole="SupplyPermission" ToRole="Supplier" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SupplyPermission_Users" FromRole="SupplyPermission" ToRole="Users" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="totalprice" Type="Int32" />
+    <NavigationProperty Name="C_itemsDetails" Relationship="Model.FK_SupplyPermission__itemsDetails" FromRole="SupplyPermission" ToRole="C_itemsDetails" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="transactionItem">
+    <Key>
+      <PropertyRef Name="trans_id" />
+    </Key>
+    <Property Name="trans_id" Type="Int32" Nullable="false" />
+    <Property Name="StoreSend" Type="Int32" Nullable="false" />
+    <Property Name="StoreRecive" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeSend" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeRecive" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="C_itemsDetails" Relationship="Model.FK_transactionItem__itemsDetails" FromRole="transactionItem" ToRole="C_itemsDetails" />
+    <NavigationProperty Name="Store" Relationship="Model.FK_transactionItem_Stores" FromRole="transactionItem" ToRole="Store" />
+    <NavigationProperty Name="Store1" Relationship="Model.FK_transactionItem_Stores1" FromRole="transactionItem" ToRole="Store" />
+    <NavigationProperty Name="User" Relationship="Model.FK_transactionItem_Users" FromRole="transactionItem" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Model.FK_transactionItem_Users1" FromRole="transactionItem" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="unit_id" />
+    </Key>
+    <Property Name="unit_id" Type="Int32" Nullable="false" />
+    <Property Name="unit_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="C_itemsDetails" Relationship="Self.FK__itemsDetails_Unit" FromRole="Unit" ToRole="C_itemsDetails" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dept_id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Users_Department2" FromRole="Users" ToRole="Department" />
+    <NavigationProperty Name="DismissalNotices" Relationship="Self.FK_DismissalNotice_Users" FromRole="Users" ToRole="DismissalNotice" />
+    <NavigationProperty Name="Stores" Relationship="Self.FK_Stores_Users1" FromRole="Users" ToRole="Stores" />
+    <NavigationProperty Name="Store" Relationship="Self.FK_Users_Stores2" FromRole="Users" ToRole="Stores" />
+    <NavigationProperty Name="SupplyPermissions" Relationship="Self.FK_SupplyPermission_Users" FromRole="Users" ToRole="SupplyPermission" />
+    <NavigationProperty Name="transactionItems" Relationship="Model.FK_transactionItem_Users" FromRole="User" ToRole="transactionItem" />
+    <NavigationProperty Name="transactionItems1" Relationship="Model.FK_transactionItem_Users1" FromRole="User" ToRole="transactionItem" />
+  </EntityType>
+  <Association Name="FK__itemsDetails_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="C_itemsDetails" Type="Self.C_itemsDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="unit_id" />
+      </Principal>
+      <Dependent Role="C_itemsDetails">
+        <PropertyRef Name="itemUnit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permitionItem__itemsDetails">
+    <End Role="C_itemsDetails" Type="Self.C_itemsDetails" Multiplicity="1" />
+    <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_itemsDetails">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="permitionItem">
+        <PropertyRef Name="code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DismissalNotice_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="DismissalNotice">
+        <PropertyRef Name="dismissalClient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DismissalNotice_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="DismissalNotice">
+        <PropertyRef Name="dismissalDept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stores_Department2">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Stores" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="Stores">
+        <PropertyRef Name="department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplyPermission_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="SupplyPermission">
+        <PropertyRef Name="permDept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Department2">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DismissalNotice_Stores">
+    <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+    <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stores">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="DismissalNotice">
+        <PropertyRef Name="dismissalStore_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DismissalNotice_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="DismissalNotice" Type="Self.DismissalNotice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="DismissalNotice">
+        <PropertyRef Name="dismissalUser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permitionItem_Stores">
+    <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+    <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stores">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="permitionItem">
+        <PropertyRef Name="Store_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permitionItem_SupplyPermission1">
+    <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="1" />
+    <End Role="permitionItem" Type="Self.permitionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplyPermission">
+        <PropertyRef Name="permission_id" />
+      </Principal>
+      <Dependent Role="permitionItem">
+        <PropertyRef Name="permition_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stores_Users1">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Stores" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Stores">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplyPermission_Stores">
+    <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+    <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stores">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="SupplyPermission">
+        <PropertyRef Name="permStore_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Stores2">
+    <End Role="Stores" Type="Self.Store" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stores">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplyPermission_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="SupplyPermission">
+        <PropertyRef Name="permSupplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplyPermission_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="SupplyPermission" Type="Self.SupplyPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="SupplyPermission">
+        <PropertyRef Name="permUser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mangement_storesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C_itemsDetails" EntityType="Self.C_itemsDetails" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="DismissalNotices" EntityType="Self.DismissalNotice" />
+    <EntitySet Name="permitionItems" EntityType="Self.permitionItem" />
+    <EntitySet Name="Stores" EntityType="Self.Store" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="SupplyPermissions" EntityType="Self.SupplyPermission" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="transactionItems" EntityType="Self.transactionItem" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__itemsDetails_Unit" Association="Self.FK__itemsDetails_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permitionItem__itemsDetails" Association="Self.FK_permitionItem__itemsDetails">
+      <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+      <End Role="permitionItem" EntitySet="permitionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DismissalNotice_Client" Association="Self.FK_DismissalNotice_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DismissalNotice_Department" Association="Self.FK_DismissalNotice_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stores_Department2" Association="Self.FK_Stores_Department2">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Stores" EntitySet="Stores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplyPermission_Department" Association="Self.FK_SupplyPermission_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Department2" Association="Self.FK_Users_Department2">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DismissalNotice_Stores" Association="Self.FK_DismissalNotice_Stores">
+      <End Role="Stores" EntitySet="Stores" />
+      <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DismissalNotice_Users" Association="Self.FK_DismissalNotice_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permitionItem_Stores" Association="Self.FK_permitionItem_Stores">
+      <End Role="Stores" EntitySet="Stores" />
+      <End Role="permitionItem" EntitySet="permitionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permitionItem_SupplyPermission1" Association="Self.FK_permitionItem_SupplyPermission1">
+      <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+      <End Role="permitionItem" EntitySet="permitionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stores_Users1" Association="Self.FK_Stores_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Stores" EntitySet="Stores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplyPermission_Stores" Association="Self.FK_SupplyPermission_Stores">
+      <End Role="Stores" EntitySet="Stores" />
+      <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Stores2" Association="Self.FK_Users_Stores2">
+      <End Role="Stores" EntitySet="Stores" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplyPermission_Supplier" Association="Self.FK_SupplyPermission_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplyPermission_Users" Association="Self.FK_SupplyPermission_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplyPermission__itemsDetails" Association="Model.FK_SupplyPermission__itemsDetails">
+      <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+      <End Role="SupplyPermission" EntitySet="SupplyPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DismissalNotice__itemsDetails" Association="Model.FK_DismissalNotice__itemsDetails">
+      <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+      <End Role="DismissalNotice" EntitySet="DismissalNotices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionItem__itemsDetails" Association="Model.FK_transactionItem__itemsDetails">
+      <End Role="C_itemsDetails" EntitySet="C_itemsDetails" />
+      <End Role="transactionItem" EntitySet="transactionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionItem_Stores" Association="Model.FK_transactionItem_Stores">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="transactionItem" EntitySet="transactionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionItem_Stores1" Association="Model.FK_transactionItem_Stores1">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="transactionItem" EntitySet="transactionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionItem_Users" Association="Model.FK_transactionItem_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="transactionItem" EntitySet="transactionItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionItem_Users1" Association="Model.FK_transactionItem_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="transactionItem" EntitySet="transactionItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_SupplyPermission__itemsDetails">
+    <End Type="Model.C_itemsDetails" Role="C_itemsDetails" Multiplicity="0..1" />
+    <End Type="Model.SupplyPermission" Role="SupplyPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_itemsDetails">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="SupplyPermission">
+        <PropertyRef Name="code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DismissalNotice__itemsDetails">
+    <End Type="Model.C_itemsDetails" Role="C_itemsDetails" Multiplicity="0..1" />
+    <End Type="Model.DismissalNotice" Role="DismissalNotice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_itemsDetails">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="DismissalNotice">
+        <PropertyRef Name="Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionItem__itemsDetails">
+    <End Type="Model.C_itemsDetails" Role="C_itemsDetails" Multiplicity="1" />
+    <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_itemsDetails">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="transactionItem">
+        <PropertyRef Name="Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionItem_Stores">
+    <End Type="Model.Store" Role="Store" Multiplicity="1" />
+    <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="transactionItem">
+        <PropertyRef Name="StoreSend" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionItem_Stores1">
+    <End Type="Model.Store" Role="Store" Multiplicity="1" />
+    <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="transactionItem">
+        <PropertyRef Name="StoreRecive" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionItem_Users">
+    <End Type="Model.User" Role="User" Multiplicity="1" />
+    <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="transactionItem">
+        <PropertyRef Name="EmployeeSend" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionItem_Users1">
+    <End Type="Model.User" Role="User" Multiplicity="1" />
+    <End Type="Model.transactionItem" Role="transactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="transactionItem">
+        <PropertyRef Name="EmployeeRecive" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
